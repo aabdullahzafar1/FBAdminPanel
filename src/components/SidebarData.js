@@ -6,8 +6,8 @@ import * as IoIcons from 'react-icons/io';
 export const SidebarData = [
   {
     
-      title: 'Dashboard',
-      path: '/Sales',
+      title: 'Analytics Dashboard',
+      path: '/SalesR',
       icon: <FaIcons.FaCartPlus />,
       cName: 'nav-text'
     },
@@ -21,7 +21,7 @@ export const SidebarData = [
   {
     title: 'Post Removal',
     path: '/',
-    icon: <AiIcons.AiFillHome />,
+    icon: <FaIcons.FaEraser />,
     cName: 'nav-text'
   },
   {
@@ -35,6 +35,12 @@ export const SidebarData = [
     title: 'Account Removal',
     path: '/AccountR',
     icon: <IoIcons.IoMdPeople />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Manage Livestream',
+    path: '/RestaurantLive',
+    icon: <AiIcons.AiTwotoneVideoCamera />,
     cName: 'nav-text'
   },
 

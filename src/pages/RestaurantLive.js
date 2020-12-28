@@ -3,20 +3,23 @@ import {Card,Icon,Image, Button} from 'semantic-ui-react'
 import './Pages.css';
 import firebase from "firebase/app";
 import "firebase/firestore";
-import ReactPlayer from 'react-player'
+import Drawer from 'react-drag-drawer'
 
 
 import * as FaIcons from 'react-icons/fa';
+import { firestore } from 'firebase-admin';
 
-function Home() {
-  const [listings,setListings] = useState([])
+function RestaurantLive() {
+const [listings,setListings] = useState([])
 const [searchText,setSearchText] = useState('')
+const[open,setOpen] = useState(false)
+const [streamLink, setStreamLink] = useState()
+const [currId,setCurrId] = useState()
 
 
 
   async function loadData() {
-    console.log("Sexy")
-    const postRef = await firebase.firestore().collection("posts").get()
+    const postRef = await firebase.firestore().collection("users").where("isRestaurant","==",true).get()
     setListings(postRef.docs.map((doc)=>({id: doc.id, data: doc.data()})))
     let data =[]
     
@@ -30,15 +33,13 @@ const [searchText,setSearchText] = useState('')
     return
   }
   }
-  function removeProfle(id){
-    firebase.firestore().collection('posts').doc(id).delete()
-  }
+
   function handleChange(e) {
     setSearchText(e.target.value)
   }
 
   useEffect(() => {
-    const unsubscribe = firebase.firestore().collection('posts').onSnapshot(snapshot => {
+    const unsubscribe = firebase.firestore().collection('users').onSnapshot(snapshot => {
         if (snapshot.size) {
           loadData();
         }
@@ -49,22 +50,55 @@ const [searchText,setSearchText] = useState('')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firebase,searchText])
 
+function toggle(id) {
+  setCurrId(id)
+    setOpen(!open)
+}
 
+function manageStream() {
+   firebase.firestore().collection('users').doc(currId).update({
+     initalHtml: streamLink
+   })
+   toggle()
+   setStreamLink('')
+}
   
 
   //CardInfo Variable with Array of Objects
   const renderCard =(card,index) =>{
     return (
       <div style={{marginLeft:30,padding: 20, borderRadius: 20, borderColor: "red"}}>
+              <Drawer className="Drawer"
+              open={open}
+              onRequestClose={toggle}
+            >
+              <div className="Dtext2">Enter the Link in the textbox</div>
+              <div className="DtextB">
+              <textarea className="DtextBi"
+                type="textarea"
+                name="textValue"
+                
+                onChange={text => {setStreamLink(text.target.value)}}
+                defaultValue={card.data.initalHtml}
+                placeholder="Enter Restaurant Stream Link"
+                
+              />
+              <p>
+                <strong></strong>
+              </p>
+            </div>
+            <div className='ui two buttons'>
+              
+                  <Button basic color='green' className="GD" onClick = {()=>manageStream()}>
+                    Enter
+                  </Button>
+                  <Button basic color='green' className="GD1" onClick = {()=>toggle()}>
+                  Close
+                </Button>
+                  </div>
+            </Drawer>
       <Card className="cardUI">
-      {String(card.data.type).includes('video') &&<ReactPlayer 
-
-      className='react-player'
-      width='100%'
-      height='100%'
-      url={card.data.images} />}
-      {String(card.data.type).includes('image') &&<Image className="img1" src={card.data.images} />}
-      {card.data.isCheckIn &&<Image className="img1" src='https://www.maketecheasier.com/assets/uploads/2017/07/google-maps-alternatives-featured.jpg' />}
+    <Image className="img1" src={card.data.image} />
     <Card.Content>
       <Card.Header className="title1">{card.data.name}</Card.Header>
       <Card.Meta>
@@ -76,13 +110,19 @@ const [searchText,setSearchText] = useState('')
       
       <div className='ui two buttons'>
       
-          <Button basic color='green' className="GD" onClick = {()=>removeProfle(card.id)}>
-            Delete
+          <Button basic color='green' className="GD" onClick = {()=>toggle(card.id)}>
+            Edit
           </Button>
           
           </div>
+          
+
+
+    
+  
     </Card.Content>
   </Card>
+  
   </div>
 
     )
@@ -110,4 +150,4 @@ const styles = {
   }
 }
 
-export default Home;
+export default RestaurantLive;

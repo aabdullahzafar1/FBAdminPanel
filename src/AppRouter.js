@@ -16,6 +16,8 @@ import Register from './pages/Register';
 import firebase from "firebase/app";
 import "firebase/firestore";
 import LoginPage from './pages/LoginPage';
+import RestaurantLive from './pages/RestaurantLive';
+import SalesR from './pages/SalesR';
 
 
 function AppRouter() {
@@ -28,9 +30,11 @@ function AppRouter() {
           <Route path='/' exact component={Home} />
           <Route path='/reports' component={Reports} />
           <Route path='/RegisterNew' component={Register} />
+          <Route path='/SalesR' component={SalesR}/>
           <Route path='/Sales' component={Sales}/>
           
           <Route path='/AccountR' component={AccountR}/>
+          <Route path='/RestaurantLive' component={RestaurantLive}/>
           
         </Switch>
       </Router>

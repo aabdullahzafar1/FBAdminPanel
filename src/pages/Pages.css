@@ -199,6 +199,62 @@
   .button2:hover {
     opacity: 2;
     right: 0;
+
+  }
+  .button3{
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    text-align: center;
+    font-size: 16px;
+    margin: 3px 2px;
+    border-radius: 5px ;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 1rem;
+    width:40%;
+    height: auto;
+    text-transform: uppercase
+  }
+  .button3:hover {
+    opacity: 2;
+    right: 0;
+
+  }
+  .SB{
+    margin-left: -67rem;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .LogB{
+    background-color: #060b26;
+    border: none;
+    color: white;
+    padding: 7px 14px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bolder;
+    margin: 3px 2px;
+    border-radius: 5px ;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 1rem;
+    width:10%;
+    height: auto;
+  }
+  .LogB:hover {
+    opacity: 2;
+    right: 0;
+    background-color: blanchedalmond;
+    color: black;
+    font-weight: bold;
   }
   .btn{
       width:18%;
@@ -255,4 +311,135 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+  /* Drawer Css  */
+  .Drawer {
+    height: 1rem;
+    background-color: lavender;
+    width: 30%;
+  }
+  .Dtext2{
+    color: white;
+    font-weight: bold;
+    width: 20rem;
+    
+    
+    
+  }
   
+  .DtextBi{
+    margin-top: 2rem;
+    width:25rem;
+    color: rosybrown;
+    border: solid black;
+    height: 25rem;
+    white-space: pre-wrap;
+    
+  }
+  .GD{
+    padding: 10px 10px 10px 10px;
+    justify-content: center;
+    text-align: center;
+    width:7rem;
+    flex: auto;
+    text-transform: uppercase;
+    margin-right:0px;
+    background-color:#060b26;
+    padding: 5px 5px 5px 5px;
+    color:white;
+    border-radius: 5px ;
+    opacity: 0.8;
+    transition: 0.3s;
+    margin-top: 1rem;
+    margin-left: 5rem;
+
+  }
+  .GD:hover{
+    opacity: 2;
+    right: 0;
+    background-color:#81e6ac;
+    color: black;
+    font-weight: bold
+    }
+    .GD3{
+      padding: 10px 10px 10px 10px;
+      justify-content: center;
+      text-align: center;
+      width:7rem;
+      flex: auto;
+      text-transform: uppercase;
+      margin-right:0px;
+      background-color:#060b26;
+      padding: 5px 5px 5px 5px;
+      color:white;
+      border-radius: 5px ;
+      opacity: 0.8;
+      transition: 0.3s;
+      margin-top: 1rem;
+      margin-left: 1rem;
+  
+    }
+    .GD3:hover{
+      opacity: 2;
+      right: 0;
+      background-color:#81e6ac;
+      color: black;
+      font-weight: bold
+      }
+    .GD1{
+      padding: 10px 10px 10px 10px;
+      justify-content: center;
+      text-align: center;
+      width:7rem;
+      flex: auto;
+      text-transform: uppercase;
+      margin-right:0px;
+      background-color:#060b26;
+      padding: 5px 5px 5px 5px;
+      color: white;
+      border-radius: 5px ;
+      opacity: 0.8;
+      transition: 0.3s;
+      margin-top: 1rem;
+      margin-left: 2rem;
+      
+    }
+    .GD1:hover{
+      opacity: 2;
+      right: 0;
+      background-color: blanchedalmond;
+      color: black;
+      font-weight: bold
+      }
+
+      .GD2{
+        padding: 10px 10px 10px 10px;
+        justify-content: center;
+        text-align: center;
+        width:7rem;
+        flex: auto;
+        text-transform: uppercase;
+        margin-right:0px;
+        background-color:#060b26;
+        padding: 5px 5px 5px 5px;
+        color: white;
+        border-radius: 5px ;
+        opacity: 0.8;
+        transition: 0.3s;
+        margin-bottom: 30rem;
+        margin-left: 5rem;
+        
+        
+    
+      }
+      .GD2:hover{
+        opacity: 2;
+        right: 0;
+        background-color: blanchedalmond;
+        color: black;
+        font-weight: bold
+        }
+      .CardDesc1{
+        margin-bottom: 3rem;
+      }
+      
+      

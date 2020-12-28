@@ -4,6 +4,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
+    text-decoration: none;
 
 }
 .tex{
@@ -13,7 +14,7 @@
     padding: 540px;
     flex-direction: row;
     align-content: center;
-    color: aqua;
+    color: blanchedalmond;
     display: flex;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: r;
@@ -54,12 +55,15 @@
     padding: 8px 0px 8px 16px;
     list-style: none;
     height: 60px;
+    
 }
 
 .nav-text a {
     text-decoration: none;
-    color: #f5f5f5;
+    color: white;
+    font-weight: bold;
     font-size: 18px;
+    margin-top: 5rem;
     width: 95%;
     height: 100%;
     display: flex;
@@ -69,15 +73,17 @@
 }
 
 .nav-text a:hover {
-    background-color: #1a83ff;
+    background-color: black;
+    text-decoration: none;
 }
 
 .nav-menu-items {
     width: 100%;
+    
 }
 
 .navbar-toggle {
-    background-color: #060b26;
+    background-color:#060b26 ;
     width: 100%;
     height: 80px;
     display: flex;

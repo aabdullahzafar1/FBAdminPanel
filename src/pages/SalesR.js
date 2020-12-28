@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import {Card,Icon,Image, Button} from 'semantic-ui-react'
+import {Bar, Line, Pie} from 'react-chartjs-2';
+import {Link} from 'react-router-dom'
 import './Pages.css';
 import firebase from "firebase/app";
 import "firebase/firestore";
-import ReactPlayer from 'react-player'
+import Drawer from 'react-drag-drawer'
 
 
 import * as FaIcons from 'react-icons/fa';
+import { firestore } from 'firebase-admin';
 
-function Home() {
-  const [listings,setListings] = useState([])
+function SalesR() {
+const [listings,setListings] = useState([])
 const [searchText,setSearchText] = useState('')
+const[open,setOpen] = useState(false)
+const [streamLink, setStreamLink] = useState()
+const [currId,setCurrId] = useState()
 
 
 
   async function loadData() {
-    console.log("Sexy")
-    const postRef = await firebase.firestore().collection("posts").get()
+    const postRef = await firebase.firestore().collection("users").where("isRestaurant","==",true).get()
     setListings(postRef.docs.map((doc)=>({id: doc.id, data: doc.data()})))
     let data =[]
     
@@ -30,15 +35,13 @@ const [searchText,setSearchText] = useState('')
     return
   }
   }
-  function removeProfle(id){
-    firebase.firestore().collection('posts').doc(id).delete()
-  }
+
   function handleChange(e) {
     setSearchText(e.target.value)
   }
 
   useEffect(() => {
-    const unsubscribe = firebase.firestore().collection('posts').onSnapshot(snapshot => {
+    const unsubscribe = firebase.firestore().collection('users').onSnapshot(snapshot => {
         if (snapshot.size) {
           loadData();
         }
@@ -49,40 +52,57 @@ const [searchText,setSearchText] = useState('')
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [firebase,searchText])
 
+function toggle(id) {
+  setCurrId(id)
+    setOpen(!open)
+}
 
+function manageStream() {
+   firebase.firestore().collection('users').doc(currId).update({
+     initalHtml: streamLink
+   })
+   toggle()
+   setStreamLink('')
+}
   
 
   //CardInfo Variable with Array of Objects
   const renderCard =(card,index) =>{
     return (
       <div style={{marginLeft:30,padding: 20, borderRadius: 20, borderColor: "red"}}>
+              
       <Card className="cardUI">
-      {String(card.data.type).includes('video') &&<ReactPlayer 
-
-      className='react-player'
-      width='100%'
-      height='100%'
-      url={card.data.images} />}
-      {String(card.data.type).includes('image') &&<Image className="img1" src={card.data.images} />}
-      {card.data.isCheckIn &&<Image className="img1" src='https://www.maketecheasier.com/assets/uploads/2017/07/google-maps-alternatives-featured.jpg' />}
+    <Image className="img1" src={card.data.image} />
     <Card.Content>
       <Card.Header className="title1">{card.data.name}</Card.Header>
       <Card.Meta>
         <span className='date'>{card.data.email}</span>
       </Card.Meta>
-      <Card.Description className="CardDesc">
+      <Card.Description className="CardDesc1">
         {card.data.contact}
       </Card.Description>
       
       <div className='ui two buttons'>
       
-          <Button basic color='green' className="GD" onClick = {()=>removeProfle(card.id)}>
-            Delete
-          </Button>
+          <Link basic color='green'  className="GD2"
+          style={{ textDecoration: 'none' , marginTop:'10rem'}} 
+          to={{pathname: "/Sales/"+card.id,
+          state: {
+            id: card.id
+          }
+        }}>
+            View Sales
+          </Link>
           
           </div>
+          
+
+
+    
+  
     </Card.Content>
   </Card>
+  
   </div>
 
     )
@@ -110,4 +130,4 @@ const styles = {
   }
 }
 
-export default Home;
+export default SalesR;

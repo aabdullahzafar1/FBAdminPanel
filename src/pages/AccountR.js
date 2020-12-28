@@ -3,6 +3,9 @@ import {Card,Icon,Image, Button} from 'semantic-ui-react'
 import './Pages.css';
 import firebase from "firebase/app";
 import "firebase/firestore";
+import * as admin from 'firebase-admin'
+
+import * as FaIcons from 'react-icons/fa';
 
 function Reports() {
   const [listings,setListings] = useState([])
@@ -26,8 +29,10 @@ const [searchText,setSearchText] = useState('')
     return
   }
   }
-  function removeProfle(id){
+  function removeProfle(id,uid){
     firebase.firestore().collection('users').doc(id).delete()
+    admin.auth().deleteUser(uid).then(alert('SUCCESS!! :-)\n\n' + JSON.stringify("Deleted", null, 4))).catch(error => alert('SUCCESS!! :-)\n\n' + JSON.stringify("Not Deleted"+error, null, 4)))
+    
   }
   function handleChange(e) {
     setSearchText(e.target.value)
@@ -65,7 +70,7 @@ const [searchText,setSearchText] = useState('')
       
       <div className='ui two buttons'>
       
-          <Button basic color='green' className="GB" onClick = {()=>removeProfle(card.id)}>
+          <Button basic color='green' className="GD" onClick = {()=>removeProfle(card.id,card.data.uid)}>
             Delete
           </Button>
           
@@ -79,7 +84,9 @@ const [searchText,setSearchText] = useState('')
   return (
     <React.Fragment>
     <input className="search1" onChange={handleChange} ></input>
-      <div className="reports" >
+    <label className="SB" htmlFor="Search">Search by Name:</label>
+    <div className="reports" >
+      
       
       {listings.map(renderCard)}
       </div>

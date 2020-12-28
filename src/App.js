@@ -7,6 +7,7 @@ import AppRouter from './AppRouter';
 import AuthContext from "./components/context";
 import Example from "./pages/example";
 import LoginPage from "./pages/LoginPage";
+import * as admin from 'firebase-admin'
 
 
 var firebaseConfig = {
@@ -22,7 +23,11 @@ var firebaseConfig = {
 if (!firebase.apps.length) {
 firebase.initializeApp(firebaseConfig);
 }
-
+var serviceAccount = require("./foodbeast-340381-firebase-adminsdk-2a0eo-3ae6de6eda.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://foodbeast-340381.firebaseio.com"
+});
 
 function App() {
 

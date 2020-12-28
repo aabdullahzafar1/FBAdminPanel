@@ -19,7 +19,7 @@ function Navbar() {
   
         <div className='navbar' >
         <h1 style ={{zIndex: 1000,color: 'white', flex:1}}>Foodbeast Admin</h1> 
-      <button onClick = {()=> {authContext.setUser(false)}} className= "button1" >Logout</button>
+      <button onClick = {()=> {authContext.setUser(false)}} className= "LogB" >Logout</button>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>

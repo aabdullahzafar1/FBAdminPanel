@@ -40,11 +40,11 @@ const [CardInfo,setCardInfo] = useState([])
       
       <div className='ui two buttons'>
       
-          <Button basic color='green' className="GB" onClick = {()=>approveRestaurant(card.id)}>
+          <Button basic color='green' className="GD3" onClick = {()=>approveRestaurant(card.id)}>
             Approve
           </Button>
           
-          <Button className="GR" basic color='red'>
+          <Button className="button3" basic color='red'>
             Decline
           </Button>
           </div>
